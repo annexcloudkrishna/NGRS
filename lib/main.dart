@@ -355,9 +355,12 @@ class _MyAppState extends State<MyApp> {
     print("upload image Name to Azure -> " + fname);
     // read file as Uint8List
 
+    String accont = dotenv.env['AZURE_USERNAME'] ?? 'XXXX';
+    String key = dotenv.env['AZURE_KEY'] ?? 'XXXX';
+
     Uint8List? content = await file.readAsBytes();
     var storage = AzureStorage.parse(
-        'DefaultEndpointsProtocol=https;AccountName=socialannexuat;AccountKey=bRUxHvBQb06eioU+V18irvjz2GLB1U6JNn7ilCAr0LAD2g5DCnygfA80nBLayO9IJuB++VQUI6Rj+ASt/pVzKQ==');
+        'DefaultEndpointsProtocol=https;AccountName=$accont;AccountKey=$key');
     String container = "ocr";
     // get the mine type of the file
     String? contentType = lookupMimeType(filePath);
